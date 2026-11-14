@@ -3,3 +3,24 @@ const requestedDistrict=new URLSearchParams(location.search).get('district');let
 const sound=document.getElementById('sound');let ctx,osc,gain; sound.addEventListener('click',()=>{if(!ctx){try{ctx=new (window.AudioContext||window.webkitAudioContext)();osc=ctx.createOscillator();gain=ctx.createGain();osc.type='sine';osc.frequency.value=72;gain.gain.value=.012;osc.connect(gain).connect(ctx.destination);osc.start()}catch{sound.textContent='SOUND UNAVAILABLE';return}}if(ctx.state==='suspended'){ctx.resume();sound.textContent='SOUND ON ◉';sound.setAttribute('aria-pressed','true')}else{ctx.suspend();sound.textContent='SOUND OFF ◌';sound.setAttribute('aria-pressed','false')}});
 const loader=document.getElementById('loader');setTimeout(()=>loader.classList.add('done'),1100);
 (async()=>{if(matchMedia('(prefers-reduced-motion: reduce)').matches||innerWidth<600)return;try{const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.181.2/build/three.module.js');const renderer=new THREE.WebGLRenderer({alpha:true,antialias:false,powerPreference:'low-power'});renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.setSize(innerWidth,innerHeight);document.getElementById('world').appendChild(renderer.domElement);const scene=new THREE.Scene();const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,100);camera.position.z=15;const geo=new THREE.BufferGeometry(),n=280,points=new Float32Array(n*3);for(let i=0;i<n;i++){points[i*3]=(Math.random()-.5)*32;points[i*3+1]=(Math.random()-.5)*20;points[i*3+2]=(Math.random()-.5)*14}geo.setAttribute('position',new THREE.BufferAttribute(points,3));const particles=new THREE.Points(geo,new THREE.PointsMaterial({color:0xffb2db,size:.035,transparent:true,opacity:.45}));scene.add(particles);let run=true;document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)requestAnimationFrame(frame)});function frame(t){if(!run)return;particles.rotation.y=t*.000012;particles.rotation.x=t*.000004;renderer.render(scene,camera);requestAnimationFrame(frame)}requestAnimationFrame(frame);addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)})}catch(e){console.warn('Optional 3D atmosphere unavailable',e)}})();
+
+const heroVideo = document.querySelector('.hero-video');
+const motionButton = document.getElementById('hero-motion');
+if (heroVideo && motionButton) {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let userPaused = false;
+  const start = async () => {
+    if (reduced.matches || userPaused || document.hidden) return;
+    if (!heroVideo.src) heroVideo.src = heroVideo.dataset.src;
+    try { await heroVideo.play(); heroVideo.classList.add('playing'); motionButton.hidden = false; motionButton.textContent = 'PAUSE BACKGROUND MOTION'; }
+    catch { heroVideo.classList.remove('playing'); motionButton.hidden = true; }
+  };
+  motionButton.addEventListener('click', () => {
+    userPaused = !userPaused;
+    if (userPaused) { heroVideo.pause(); motionButton.textContent = 'PLAY BACKGROUND MOTION'; }
+    else start();
+  });
+  reduced.addEventListener('change', () => { if (reduced.matches) { heroVideo.pause(); heroVideo.classList.remove('playing'); motionButton.hidden = true; } else start(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) heroVideo.pause(); else start(); });
+  start();
+}
