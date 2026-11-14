@@ -78,3 +78,16 @@ document.getElementById('copy-draft')?.addEventListener('click',async()=>{
   try { await navigator.clipboard.writeText(text.value); status.textContent = 'Draft copied. It has not been submitted.'; }
   catch { text.focus(); text.select(); status.textContent = 'Select and copy the draft manually. It has not been submitted.'; }
 });
+
+const featureDialog = document.querySelector('.feature-dialog');
+const featureButton = document.getElementById('open-feature');
+featureButton?.addEventListener('click', () => {
+  featureDialog.showModal();
+  loadPlayer(featureDialog.querySelector('[data-player]'));
+});
+document.getElementById('close-feature')?.addEventListener('click', () => featureDialog.close());
+featureDialog?.addEventListener('close', () => {
+  const frame = featureDialog.querySelector('iframe');
+  if (frame) frame.remove();
+  featureButton.focus();
+});
