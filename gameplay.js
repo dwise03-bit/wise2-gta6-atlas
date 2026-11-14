@@ -1,5 +1,26 @@
 import { matches, embedUrl, validateSubmission } from './gameplay-model.js';
 
+const heroVideo = document.querySelector('.hero-video');
+const motionButton = document.getElementById('hero-motion');
+if (heroVideo && motionButton) {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let userPaused = false;
+  const start = async () => {
+    if (reduced.matches || userPaused || document.hidden) return;
+    if (!heroVideo.src) heroVideo.src = heroVideo.dataset.src;
+    try { await heroVideo.play(); heroVideo.classList.add('playing'); motionButton.hidden = false; motionButton.textContent = 'PAUSE BACKGROUND MOTION'; }
+    catch { heroVideo.classList.remove('playing'); motionButton.hidden = true; }
+  };
+  motionButton.addEventListener('click', () => {
+    userPaused = !userPaused;
+    if (userPaused) { heroVideo.pause(); motionButton.textContent = 'PLAY BACKGROUND MOTION'; }
+    else start();
+  });
+  reduced.addEventListener('change', () => { if (reduced.matches) { heroVideo.pause(); heroVideo.classList.remove('playing'); motionButton.hidden = true; } else start(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) heroVideo.pause(); else start(); });
+  start();
+}
+
 document.querySelectorAll('[data-filter-group]').forEach(group => {
   const form = group.querySelector('form');
   const records = [...group.querySelectorAll('[data-record]')];
