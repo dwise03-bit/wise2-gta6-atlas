@@ -19,3 +19,5 @@ The map is a region index connected to the original Explorer, not an official ge
 ## Licensing and unfinished integrations
 
 Official YouTube embeds load only on user action and include source links and fallback links. The launch trailer uses Rockstar's official player link. No footage is downloaded or rehosted. Existing Atlas imagery was inherited from the repository and credited there; its reuse permission should be reviewed by the site owner. The submission form is a client-only prototype: no transmission, storage or moderation queue exists. A real service needs secure persistence, spam protection, privacy policy, a private moderation interface and editorial publication controls. Release dates may change; verify against Rockstar. Community evidence, patch history, walkthroughs, comparisons and trackers remain future editorial/backend work, not fabricated launch content.
+
+The hero background is an original AI-generated fictional coastal scene created in Google Flow on November 14, 2026. It is not GTA VI gameplay. The web version is muted, compressed, and disabled for reduced motion; the still image remains as a fallback.
