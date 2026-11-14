@@ -1,0 +1,9 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {validateContent,matches,embedUrl,validateSubmission} from '../gameplay-model.js';
+import {parseFeed,reconcile,canonicalUrl} from '../scripts/research.mjs';
+const data=JSON.parse(await readFile(new URL('../data/gameplay.json',import.meta.url),'utf8'));
+test('content has valid evidence and rejects speculative coordinates',()=>{assert.ok(validateContent(data));const d=structuredClone(data);d.discoveries[0].coordinates={x:.1,y:.2,system:'guessed',sourceId:'places'};assert.throws(()=>validateContent(d));});
+test('search, player and prototype enforce boundaries',()=>{assert.equal(data.videos.filter(v=>matches(v,'','driving')).length,0);assert.match(embedUrl('VQRLujxTm3c',12),/autoplay=0.*start=12/);assert.throws(()=>embedUrl('bad'));assert.ok(validateSubmission({title:'hello',source:'javascript:alert(1)',description:'A sufficiently long description',kind:'discovery'}).length);});
+test('research deduplicates, preserves dates and detects changes',()=>{const s={id:'test',name:'test',kind:'official',allowedHosts:['www.rockstargames.com']};const feed=t=>`<rss><channel><item><title>${t}</title><link>https://www.rockstargames.com/newswire/article/123/example</link><pubDate>Thu, 27 Aug 2026 12:00:00 GMT</pubDate></item></channel></rss>`;let a=reconcile({version:1,items:{}},[],[],parseFeed(feed('GTA VI news'),s),'2026-11-14');assert.equal(a.count,1);assert.equal(a.candidates[0].status,'Unconfirmed');let b=reconcile(a.state,a.candidates,a.history,parseFeed(feed('GTA VI news'),s),'2026-11-15');assert.equal(b.count,0);let c=reconcile(a.state,a.candidates,a.history,parseFeed(feed('GTA VI updated'),s),'2026-11-15');assert.equal(c.history.length,2);assert.equal(canonicalUrl('https://www.rockstargames.com/newswire/article/123/other?utm_source=x'),canonicalUrl('https://rockstargames.com/newswire/article/123/example'));});
