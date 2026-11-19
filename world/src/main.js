@@ -75,6 +75,43 @@ function pollGamepad(){
  if(down.has(5)&&!previousButtons.has(5))cycleWorld(1);
  previousButtons=down;
 }
+// Original procedural cinematic detailing, optimized for the Android TV GPU.
+const neonBlue=new THREE.MeshBasicMaterial({color:0x36cfff});
+const neonPink=new THREE.MeshBasicMaterial({color:0xff3cbd});
+const darkMetal=mat(0x10121e),chrome=mat(0xb8c7da);
+function detailBox(parent,w,h,d,x,y,z,material){
+ const mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);
+ mesh.position.set(x,y,z);parent.add(mesh);return mesh;
+}
+// Give the blue 392-inspired original muscle car a recognizable front, lighting and silhouette.
+detailBox(car,2.8,.22,.22,0,.87,3.05,darkMetal);
+detailBox(car,2.45,.13,.09,0,1.43,3.06,chrome);
+for(const x of [-1.08,1.08]){
+ detailBox(car,.72,.22,.09,x,1.25,3.09,neonBlue);
+ detailBox(car,.64,.2,.09,x,1.25,-3.08,neonPink);
+ detailBox(car,.12,.26,2.7,x,1.51,0,chrome);
+}
+detailBox(car,2.55,.08,.55,0,1.64,-2.88,darkMetal);
+detailBox(car,2.05,.08,.15,0,2.4,-1.55,darkMetal);
+// Original crew outfit details. These are placeholders, not likeness-accurate 3D scans.
+function dressCrew(group,color){
+ const accent=new THREE.MeshBasicMaterial({color});
+ detailBox(group,.92,.12,.7,0,2.43,0,accent);
+ detailBox(group,.85,.10,.12,0,1.83,.37,accent);
+ detailBox(group,.68,.1,.52,0,3.13,0,darkMetal);
+ for(const x of [-.28,.28])detailBox(group,.39,.18,.65,x,.13,.1,darkMetal);
+}
+dressCrew(player,0x46d8ff);
+dressCrew(companions[0],0xb6b8d2);
+dressCrew(companions[1],0xff365e);
+// Lightweight skyline atmosphere and emissive street signs.
+for(let i=0;i<18;i++){
+ const x=i%2===0?-11.5:11.5,z=-86+Math.floor(i/2)*20;
+ const sign=new THREE.Mesh(new THREE.PlaneGeometry(2.5,.48),new THREE.MeshBasicMaterial({color:i%3?0x35a8fa:0xe35cb7,side:THREE.DoubleSide}));
+ sign.position.set(x,4.5,z);sign.rotation.y=Math.PI/2;scene.add(sign);
+}
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.15;
 const keys=new Set();addEventListener('keydown',e=>{keys.add(e.key.toLowerCase());if(e.key.toLowerCase()==='e'||e.key==='Enter'||e.key===' ')interact();if(e.key==='PageDown')cycleWorld(1);if(e.key==='PageUp')cycleWorld(-1)});addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));document.querySelectorAll('[data-dir]').forEach(b=>{const k={up:'w',down:'s',left:'a',right:'d'}[b.dataset.dir];b.addEventListener('pointerdown',e=>{e.preventDefault();keys.add(k);b.setPointerCapture(e.pointerId)});for(const ev of ['pointerup','pointercancel'])b.addEventListener(ev,()=>keys.delete(k))});document.getElementById('action').onclick=interact;
 let completed=false;let driving=false;function interact(){if(player.position.distanceTo(marker.position.clone().setY(0))<5){completed=true;document.getElementById('status').textContent='MISSION COMPLETE: DOORZ OPEN';document.getElementById('mission').textContent='WISE² CREW · Mission complete!'}else if(driving||player.position.distanceTo(car.position)<5){driving=!driving;player.visible=!driving;if(driving){player.position.copy(car.position);document.getElementById('status').textContent='DRIVING · WASD / arrows · E to exit'}else{player.position.set(car.position.x+4,0,car.position.z);document.getElementById('status').textContent='ON FOOT · Find the glowing marker'}}}
 const clock=new THREE.Clock();let speed=0;function tick(){requestAnimationFrame(tick);pollGamepad();const dt=Math.min(clock.getDelta(),.05),forward=THREE.MathUtils.clamp(Number(keys.has('w')||keys.has('arrowup'))-Number(keys.has('s')||keys.has('arrowdown'))+padForward,-1,1),turn=THREE.MathUtils.clamp(Number(keys.has('d')||keys.has('arrowright'))-Number(keys.has('a')||keys.has('arrowleft'))+padTurn,-1,1);if(driving){speed=THREE.MathUtils.damp(speed,forward*18,3,dt);car.rotation.y+=turn*dt*1.8*(speed>=0?1:-1);const next=car.position.clone().add(new THREE.Vector3(Math.sin(car.rotation.y)*speed*dt,0,Math.cos(car.rotation.y)*speed*dt));if(canMove(next,2)){car.position.copy(next)}else{speed=0}player.position.copy(car.position)}else{const v=new THREE.Vector3(turn,0,-forward);if(v.lengthSq()){v.normalize();const next=player.position.clone().addScaledVector(v,dt*9);if(canMove(next,.7))player.position.copy(next);player.rotation.y=Math.atan2(v.x,v.z)}}companions.forEach((c,i)=>{const offset=i===0?-2.7:2.7;const goal=new THREE.Vector3(player.position.x+offset,0,player.position.z+3);c.position.lerp(goal,Math.min(dt*2,1));c.rotation.y=player.rotation.y});marker.rotation.z+=dt;marker.visible=!completed;const target=driving?car.position:player.position;camera.position.lerp(new THREE.Vector3(target.x,driving?9:7,target.z+(driving?17:12)),.09);camera.lookAt(target.x,driving?2.5:1.8,target.z);renderer.render(scene,camera)}function canMove(p,r){if(Math.abs(p.x)>105||Math.abs(p.z)>105)return false;return !buildings.some(b=>Math.abs(p.x-b.x)<b.half+r&&Math.abs(p.z-b.z)<b.half+r)}tick();addEventListener('resize',()=>{camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight)});
