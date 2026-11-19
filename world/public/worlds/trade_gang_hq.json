@@ -1,0 +1,11 @@
+{
+  "world": "trade_gang_hq",
+  "features": [
+    "HQ",
+    "command terminal",
+    "garage bays",
+    "crew spawn area"
+  ],
+  "format": "glb",
+  "status": "blockout asset, not playtested"
+}

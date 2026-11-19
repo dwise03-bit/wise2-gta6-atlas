@@ -1,0 +1,12 @@
+{
+  "world": "wise_square",
+  "features": [
+    "street",
+    "fountain",
+    "hologram",
+    "neon storefronts",
+    "buildings"
+  ],
+  "format": "glb",
+  "status": "blockout asset, not playtested"
+}

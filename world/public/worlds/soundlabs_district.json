@@ -1,0 +1,11 @@
+{
+  "world": "soundlabs_district",
+  "features": [
+    "recording studio",
+    "radio building",
+    "stage",
+    "mission marker"
+  ],
+  "format": "glb",
+  "status": "blockout asset, not playtested"
+}
