@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">WISE2 CARTOOLS</string>
+    <string name="title_activity_main">WISE2 CARTOOLS</string>
+    <string name="package_name">net.wise2.cartools</string>
+    <string name="custom_url_scheme">net.wise2.cartools</string>
+</resources>
