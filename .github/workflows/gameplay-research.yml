@@ -1,0 +1,61 @@
+name: Daily gameplay source research
+on:
+  schedule:
+    - cron: '23 12 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+  pull-requests: write
+concurrency:
+  group: gameplay-source-research
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - name: Restore pending research baseline for cross-run deduplication
+        shell: bash
+        run: |
+          if git show-ref --verify --quiet refs/remotes/origin/research/gameplay-updates; then
+            for file in state candidates history; do
+              git show "origin/research/gameplay-updates:research/$file.json" > "/tmp/$file.json"
+              cp "/tmp/$file.json" "research/$file.json"
+            done
+          fi
+      - name: Check sources (never publishes claims)
+        id: research
+        continue-on-error: true
+        run: npm run research
+      - name: Keep run health visible, including source failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: gameplay-research-health
+          path: .research-run/report.json
+          if-no-files-found: error
+      - name: Propose structured candidates for editorial review
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: research/gameplay-updates
+          add-paths: research/*.json
+          commit-message: 'research: refresh gameplay source candidates'
+          title: 'research: gameplay source candidates for editorial review'
+          body: |
+            Daily source checks produced new or changed metadata. Nothing is published to the Gameplay Hub.
+
+            Review original sources, publication dates, evidence hashes and before/after history. Treat every candidate as Unconfirmed until an editor verifies the claim. Missing dates and failed source checks require manual follow-up; see the run-health artifact. Merge this metadata PR to retain research state, then publish selected claims in a separate editorial PR with correction history where needed.
+          draft: true
+      - name: Flag incomplete source coverage
+        if: steps.research.outcome == 'failure'
+        run: |
+          echo 'One or more source checks failed. Inspect the health artifact; absence of candidates is not proof of no updates.'
+          exit 1

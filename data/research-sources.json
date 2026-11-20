@@ -1,0 +1,6 @@
+[
+  {"id":"rockstar-vi","name":"Rockstar Games · GTA VI","url":"https://www.rockstargames.com/VI","type":"page","kind":"official","allowedHosts":["www.rockstargames.com","rockstargames.com"]},
+  {"id":"rockstar-newswire","name":"Rockstar Games · Newswire","url":"https://www.rockstargames.com/newswire/rss","type":"feed","kind":"official","allowedHosts":["www.rockstargames.com","rockstargames.com"]},
+  {"id":"rockstar-youtube","name":"Rockstar Games · YouTube","url":"https://www.youtube.com/feeds/videos.xml?user=RockstarGames","type":"feed","kind":"official","allowedHosts":["www.youtube.com","youtube.com"]},
+  {"id":"pc-gamer","name":"PC Gamer · Public RSS","url":"https://www.pcgamer.com/rss/","type":"feed","kind":"reporting","allowedHosts":["www.pcgamer.com","pcgamer.com"]}
+]

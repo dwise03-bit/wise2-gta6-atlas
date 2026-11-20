@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-11-14",
+  "release": {
+    "date": "2026-11-19",
+    "platforms": [
+      "PlayStation 5",
+      "Xbox Series X|S"
+    ],
+    "sourceId": "official-site",
+    "status": "Officially Confirmed"
+  },
+  "sources": [
+    {
+      "id": "official-site",
+      "name": "Rockstar Games · GTA VI",
+      "url": "https://www.rockstargames.com/VI",
+      "kind": "official",
+      "publishedAt": null,
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "places",
+      "name": "Rockstar Games · People & Places",
+      "url": "https://www.rockstargames.com/VI/only-in-leonida",
+      "kind": "official",
+      "publishedAt": null,
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "extended",
+      "name": "Rockstar Games · Newswire",
+      "url": "https://www.rockstargames.com/newswire/article/4k138k8okkk483/grand-theft-auto-vi-an-extended-look-now-playing",
+      "kind": "official",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "extended-video",
+      "name": "Rockstar Games · YouTube",
+      "url": "https://www.youtube.com/watch?v=tJbzMqJGH4k",
+      "kind": "official",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "trailer2",
+      "name": "Rockstar Games · YouTube",
+      "url": "https://www.youtube.com/watch?v=VQRLujxTm3c",
+      "kind": "official",
+      "publishedAt": "2025-05-06",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "launch",
+      "name": "Rockstar Games · Launch Trailer",
+      "url": "https://www.rockstargames.com/VI/launch-trailer",
+      "kind": "official",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "preload",
+      "name": "Rockstar Games · Newswire",
+      "url": "https://www.rockstargames.com/newswire/article/89834o94713o21/pre-load-grand-theft-auto-vi-now",
+      "kind": "official",
+      "publishedAt": "2026-11-10",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "gallery",
+      "name": "Rockstar Games · Newswire",
+      "url": "https://www.rockstargames.com/newswire/article/39ak81277255o9/explore-the-grand-theft-auto-vi-launch-gallery",
+      "kind": "official",
+      "publishedAt": "2026-11-05",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "pcg-extended",
+      "name": "PC Gamer",
+      "url": "https://www.pcgamer.com/games/action/gta-6-netflix-extended-look-youtube/",
+      "kind": "reporting",
+      "publishedAt": "2026-08-27",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "launch-video",
+      "name": "Rockstar Games · YouTube",
+      "url": "https://www.youtube.com/watch?v=rz1B4B2yBZY",
+      "kind": "official",
+      "publishedAt": "2026-10-15",
+      "checkedAt": "2026-11-14"
+    },
+    {
+      "id": "preload-video",
+      "name": "Rockstar Games · YouTube",
+      "url": "https://www.youtube.com/watch?v=_yl5ELcmugI",
+      "kind": "official",
+      "publishedAt": "2026-11-10",
+      "checkedAt": "2026-11-14"
+    }
+  ],
+  "videos": [
+    {
+      "id": "extended-look",
+      "title": "An Extended Look",
+      "subtitle": "Inside the next chapter of Grand Theft Auto",
+      "publishedAt": "2026-08-27",
+      "durationSeconds": 1608,
+      "categories": [
+        "exploration"
+      ],
+      "format": "Official presentation",
+      "youtubeId": "tJbzMqJGH4k",
+      "sourceId": "extended-video",
+      "contextSourceId": "extended",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar’s extended presentation, captured in-game on PlayStation 5. Detailed mechanic claims and scene-by-scene tags remain under editorial review.",
+      "chapters": [
+        {
+          "seconds": 0,
+          "title": "Full official presentation",
+          "observation": "Source-level note: Rockstar identifies this presentation as in-game PS5 footage. This does not establish individual mechanics or performance targets.",
+          "sourceId": "extended"
+        }
+      ],
+      "chapterCoverage": "Only the opening navigation bookmark is indexed. Scene timestamps are awaiting editorial verification."
+    },
+    {
+      "id": "launch-trailer",
+      "title": "Launch Trailer",
+      "subtitle": "The final approach to Leonida",
+      "publishedAt": "2026-10-15",
+      "durationSeconds": null,
+      "categories": [
+        "characters"
+      ],
+      "format": "Official trailer",
+      "youtubeId": "rz1B4B2yBZY",
+      "sourceId": "launch-video",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar’s official launch trailer. A trailer alone does not establish playable systems.",
+      "chapters": [],
+      "chapterCoverage": "Timestamp observations awaiting verification. Open the official player to watch.",
+      "contextSourceId": "launch"
+    },
+    {
+      "id": "trailer-2",
+      "title": "Trailer 2",
+      "subtitle": "Jason. Lucia. Leonida.",
+      "publishedAt": "2025-05-06",
+      "durationSeconds": 167,
+      "categories": [
+        "characters",
+        "exploration"
+      ],
+      "format": "Gameplay + cutscenes",
+      "youtubeId": "VQRLujxTm3c",
+      "sourceId": "trailer2",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar describes Trailer 2 as a mix of gameplay and cutscenes captured on PS5. Character and setting context is confirmed; switching controls and abilities are not inferred.",
+      "chapters": [
+        {
+          "seconds": 0,
+          "title": "Watch from the beginning",
+          "observation": "Source-level note: the publisher describes a blend of gameplay and cutscenes. Individual shots are not classified as player-controlled here.",
+          "sourceId": "trailer2"
+        }
+      ],
+      "chapterCoverage": "Only the opening navigation bookmark is indexed. Scene timestamps are awaiting editorial verification."
+    },
+    {
+      "id": "preload-now",
+      "title": "Pre-Load Now",
+      "subtitle": "A new official look at Leonida",
+      "publishedAt": "2026-11-10",
+      "durationSeconds": 30,
+      "categories": [
+        "characters",
+        "exploration"
+      ],
+      "format": "Official trailer",
+      "youtubeId": "_yl5ELcmugI",
+      "sourceId": "preload-video",
+      "contextSourceId": "preload",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar’s official pre-load video. Its scenes are presented as promotional footage, with individual gameplay observations awaiting verification.",
+      "chapters": [],
+      "chapterCoverage": "Scene timestamps and observations are awaiting editorial verification."
+    }
+  ],
+  "updates": [
+    {
+      "id": "preload-available",
+      "headline": "Official pre-load announcement published",
+      "publishedAt": "2026-11-10",
+      "sourceId": "preload",
+      "category": "release",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar has published its GTA VI pre-load announcement. Use the original source for platform instructions and availability."
+    },
+    {
+      "id": "launch-gallery",
+      "headline": "A new official look at Leonida",
+      "publishedAt": "2026-11-05",
+      "sourceId": "gallery",
+      "category": "exploration",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar has released a launch screenshot gallery. It provides visual reference, not verified map coordinates or proof of specific mechanics."
+    },
+    {
+      "id": "launch-trailer",
+      "headline": "Launch Trailer joins the official video library",
+      "publishedAt": "2026-10-15",
+      "sourceId": "launch",
+      "category": "characters",
+      "status": "Officially Confirmed",
+      "summary": "The launch trailer is available in Rockstar’s official player. Its scenes have not been converted into mechanic claims in this database."
+    },
+    {
+      "id": "extended-presentation",
+      "headline": "Rockstar publishes An Extended Look",
+      "publishedAt": "2026-08-27",
+      "sourceId": "extended",
+      "category": "exploration",
+      "status": "Officially Confirmed",
+      "summary": "Rockstar describes the extended presentation as footage captured in-game on PS5. Watch the official upload in the theater."
+    },
+    {
+      "id": "extended-reporting",
+      "headline": "PC Gamer reports the presentation is on YouTube",
+      "publishedAt": "2026-08-27",
+      "sourceId": "pcg-extended",
+      "category": "exploration",
+      "status": "Verified Reporting",
+      "summary": "PC Gamer reports that the extended presentation is available on YouTube following its Netflix premiere. This record concerns availability, not unreviewed mechanics."
+    }
+  ],
+  "mechanics": [
+    {
+      "id": "driving",
+      "title": "Driving & transportation",
+      "category": "driving",
+      "topics": "Vehicle handling, cars, boats, aircraft and transportation",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "No reviewed record yet establishes handling parameters, vehicle comparisons or transportation rules.",
+      "sourceIds": []
+    },
+    {
+      "id": "combat",
+      "title": "Combat & police",
+      "category": "combat",
+      "topics": "Weapons, combat, wanted levels and police systems",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "Weapon statistics, police behavior and combat rules require direct, documented evidence.",
+      "sourceIds": []
+    },
+    {
+      "id": "characters",
+      "title": "Character abilities & switching",
+      "category": "characters",
+      "topics": "Jason, Lucia, abilities and character switching",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "Jason and Lucia are named in official material. That narrative fact does not establish switching rules or special abilities.",
+      "sourceIds": [
+        "official-site"
+      ]
+    },
+    {
+      "id": "npc",
+      "title": "NPC behavior & AI",
+      "category": "world-systems",
+      "topics": "NPC routines, artificial intelligence and interactions",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "A scene in promotional footage is insufficient to establish a persistent simulation rule.",
+      "sourceIds": []
+    },
+    {
+      "id": "weather",
+      "title": "Weather & world simulation",
+      "category": "world-systems",
+      "topics": "Weather, environmental effects and world simulation",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "Weather effects, simulation depth and environmental interactions have no reviewed mechanic record here yet.",
+      "sourceIds": []
+    },
+    {
+      "id": "missions",
+      "title": "Missions & exploration",
+      "category": "missions",
+      "topics": "Activities, missions, exploration and walkthroughs",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "Leonida is the official setting. Mission objectives, activity unlocks and walkthroughs await documented evidence.",
+      "sourceIds": [
+        "official-site"
+      ]
+    },
+    {
+      "id": "progression",
+      "title": "Customization & progression",
+      "category": "world-systems",
+      "topics": "Customization, economy, purchases and progression",
+      "status": "Unconfirmed",
+      "summary": "Awaiting verification",
+      "detail": "No prices, progression rules, customization options or economy assumptions are published here without evidence.",
+      "sourceIds": []
+    }
+  ],
+  "discoveries": [
+    {
+      "id": "vice-city",
+      "title": "Vice City",
+      "type": "location",
+      "district": "vice",
+      "description": "Vice City is identified in Rockstar’s official setting material. Precise map placement is awaiting verification.",
+      "sourceId": "places",
+      "status": "Officially Confirmed",
+      "coordinates": null,
+      "media": {
+        "type": "source-link",
+        "url": "https://www.rockstargames.com/VI/only-in-leonida",
+        "label": "View official region media"
+      }
+    },
+    {
+      "id": "leonida-keys",
+      "title": "Leonida Keys",
+      "type": "location",
+      "district": "keys",
+      "description": "The Leonida Keys appear in the official People & Places collection. No geographic coordinates are asserted.",
+      "sourceId": "places",
+      "status": "Officially Confirmed",
+      "coordinates": null,
+      "media": {
+        "type": "source-link",
+        "url": "https://www.rockstargames.com/VI/only-in-leonida",
+        "label": "View official region media"
+      }
+    },
+    {
+      "id": "port-gellhorn",
+      "title": "Port Gellhorn",
+      "type": "location",
+      "district": "gellhorn",
+      "description": "Port Gellhorn is a region presented by Rockstar. Mission, vehicle and activity placements remain unverified.",
+      "sourceId": "places",
+      "status": "Officially Confirmed",
+      "coordinates": null,
+      "media": {
+        "type": "source-link",
+        "url": "https://www.rockstargames.com/VI/only-in-leonida",
+        "label": "View official region media"
+      }
+    }
+  ],
+  "corrections": [],
+  "expansions": [
+    "Mission walkthroughs",
+    "Vehicle comparisons",
+    "Interactive guides",
+    "Collectible trackers",
+    "Patch comparisons",
+    "Community guides"
+  ]
+}
