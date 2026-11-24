@@ -13,10 +13,15 @@ permissions:
 
 jobs:
   bootstrap:
-    runs-on: [self-hosted, linux, wise2]
+    runs-on: [self-hosted, Linux]
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Report selected runner
+        run: |
+          hostname
+          uname -a
+          id
       - name: Install and verify local GTA draft clipper
         run: |
           bash scripts/server-clipper-bootstrap.sh
