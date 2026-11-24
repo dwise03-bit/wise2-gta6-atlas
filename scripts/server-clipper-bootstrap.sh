@@ -2,8 +2,9 @@
 set -euo pipefail
 echo "WISE² clipper and Steam readiness"
 if ! command -v apt-get >/dev/null; then echo "Ubuntu/Debian required"; exit 1; fi
-sudo apt-get update
-sudo apt-get install -y ffmpeg jq curl ca-certificates
+if [ "$(id -u)" -eq 0 ]; then SUDO=(); else SUDO=(sudo -n); fi
+"${SUDO[@]}" apt-get update
+"${SUDO[@]}" apt-get install -y ffmpeg jq curl ca-certificates
 mkdir -p "$HOME/wise2-clipper"/{inbox,clips,archive,logs}
 bash "$(dirname "$0")/clipper.sh" check
 bash "$(dirname "$0")/ai-clipper.sh" check
