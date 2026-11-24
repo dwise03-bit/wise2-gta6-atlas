@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   bootstrap:
-    runs-on: [self-hosted, Linux]
+    runs-on: self-hosted
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
