@@ -1,0 +1,23 @@
+name: WISE2 GTA Clipper Bootstrap
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/**'
+      - 'CLIPPER.md'
+      - '.github/workflows/gta-clipper-bootstrap.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bootstrap:
+    runs-on: [self-hosted, linux, wise2]
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and verify local GTA draft clipper
+        run: |
+          bash scripts/server-clipper-bootstrap.sh
+          bash scripts/ai-clipper.sh check
